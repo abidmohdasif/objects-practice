@@ -9,14 +9,22 @@ let gameSettings = {
   difficulty: "Hard",
   soundOn: true,
   maxPlayers: 4,
-}
-for (let key in object){
-  outputDiv.textContent = key
+  toggleSound: function() {
+    this.soundOn = !this.soundOn;
+  }
+
 }
 
+
+
 function problem1() {
+  let result = ""
+  for (let key in gameSettings) {
+    result += `${key}: ${gameSettings[key]} <br>`
+  }
+  outputDiv.innerHTML = result
   // Output results in a new result variable. use let result = ______
-  outputDiv.innerHTML = result; // keep this to output to page.
+   // keep this to output to page.
 }
 
 // Problem 2
@@ -26,7 +34,7 @@ function problem1() {
 // 4. Each time you click the button, it should alternate between true and false.
 
 function problem2() {
-  // Add ONE line IN THIS function that calls toggleSound method.
+  gameSettings.toggleSound()
   outputDiv.innerHTML = `<strong>Sound is now:</strong> ${gameSettings.soundOn}`;
 }
 
@@ -37,6 +45,12 @@ function problem2() {
 // 4. display the updated size on the page.
   
   function problem3() {
+    let newSize = prompt("Enter new size for smoothie:");
+    let smoothie = {
+      flavor: "Mango",
+      size: newSize,
+      hasProtein: true,
+    }
     // keep this if else block to help with overwriting the old size. 
     // You will need to have created a newSize variable with the use of a prompt.
     if (newSize && newSize.trim() !== "") {
@@ -54,9 +68,18 @@ function problem2() {
 // 5. displays a formatted string to the page like:
 // 6. "Name: [name], Battery Life: [batteryLife] hrs, Wireless: [true/false]".
 
+let Gadget = {
+  Name: "Smartwatch",
+  BatteryLife: "24 hours",
+  isWireless: true,
+}
 
-function printGadgetSpecs(gadget) {
-  return // insert `output string here` // hint: use backticks and ${object.property} references.
+function printGadgetSpecs(Gadget) {
+  let result = ""
+  for (key in Gadget){
+    result += ` ${key}: ${Gadget[key] }`
+  }
+  return result// insert `output string here` // hint: use backticks and ${object.property} references.
 }
 
 function problem4() {
@@ -72,6 +95,12 @@ function problem4() {
 // 6. Use the method to add two plants, then 
 // 7. loop through the object to display (list out on the page) the plants in the garden.
 
+let garden = {
+  plants: ["sunflower","rose", "tulip"],  
+  addPlant: function(NewPlant){
+    this.plants.push(NewPlant)
+  }
+}
 
 function problem5() {
   
@@ -99,23 +128,33 @@ function problem5() {
 // 4. This should take user input (prompt) to add the song to songList. 
 // 5. Then add two songs and log the playlist.
 
+
 function problem6() {
+  let playlist = {
+    name: "Chill Vibes",
+    songList: [],
+    addSong: function(song) {
+      this.songList.push(song);
+    }
+  }
   // Use a for loop that iterates 2 times to ask for two songs.
   // No need to touch the for loop except uncommenting and replacing the PLACEHOLDER.
   // for (PLACEHOLDER) {
-  //   const song = prompt(`Enter song ${i + 1}:`);
-  //   if (song && song.trim() !== "") {
-  //     playlist.addSong(song.trim());
-  //   }
-  // }
+    for (let i = 0; i < 2; i++) {
+      const song = prompt(`Enter song ${i + 1}:`);
+      if (song && song.trim() !== "") {
+        playlist.addSong(song.trim());
+      }
+    }
 
 
   // This will output to the page for you:
   // Just fill in the PLACEHOLDERs with the correct info.
-  let result = `<strong>Playlist: PLACEHOLDER </strong><ul>`;
-  for (let song of PLACEHOLDER) {
-    result += `<li>${PLACEHOLDER}</li>`;
+  let result = `<strong>Playlist: ${playlist.name} </strong><ul>`;
+  for (let song of playlist.songList) {
+    result += `<li>${song}</li>`;
   }
   result += "</ul>";
   outputDiv.innerHTML = result;
+
 }
