@@ -20,7 +20,9 @@ let gameSettings = {
 function problem1() {
   let result = ""
   for (let key in gameSettings) {
-    result += `${key}: ${gameSettings[key]} <br>`
+    if (typeof gameSettings[key] !== "function") {
+      result += `${key}: ${gameSettings[key]} <br>`;
+    }
   }
   outputDiv.innerHTML = result
   // Output results in a new result variable. use let result = ______
